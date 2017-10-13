@@ -15,9 +15,9 @@ find . -type f -name "*README*" -exec sed -i 's@<span>WILDFLY_HOME</span>@EAP_HO
 
 # Rename commands
 find . -type f -name "*README*" -exec sed -i 's@KEYCLOAK_HOME/bin@RHSSO_HOME/bin@g' {} +
-find . -type f -name "*README*" -exec sed -i 's@KEYCLOAK_HOME\bin@RHSSO_HOME\bin@g' {} +
+find . -type f -name "*README*" -exec sed -i 's@KEYCLOAK_HOME\\bin@RHSSO_HOME\\bin@g' {} +
 find . -type f -name "*README*" -exec sed -i 's@WILDFLY_HOME/bin@EAP_HOME/bin@g' {} +
-find . -type f -name "*README*" -exec sed -i 's@WILDFLY_HOME\bin@EAP_HOME\bin@g' {} +
+find . -type f -name "*README*" -exec sed -i 's@WILDFLY_HOME\\bin@EAP_HOME\\bin@g' {} +
 
 # Add RHSSO Repo
 sed -i '/<\/project>/{ 
@@ -27,7 +27,7 @@ sed -i '/<\/project>/{
 }' pom.xml
 
 #update version to SSHO 
-./set-version.sh 7.1.2.CR3
+./set-version.sh 7.2.0.DR4
 
 #rename groupId in POMs
 find . -type f -name "*pom.xml*" -exec sed -i 's@<groupId>org.keycloak.bom</groupId>@<groupId>com.redhat.bom.rh-sso</groupId>@g' {} +
@@ -61,9 +61,11 @@ find . -type f -name "*pom.xml*" -exec sed -i 's@<artifactId>keycloak-user-stora
 git checkout -b prod_staging
 git checkout action-token-authenticator/pom.xml
 git checkout action-token-required-action/pom.xml 
+git checkout app-springboot/pom.xml
+git checkout app-springboot/README.md
 git rm -r action-token-authenticator
 git rm -r action-token-required-action
-git rm -r service-springboot-rest
+git rm -r app-springboot 
 git status
 
 git commit . -m "rename pom and readme"
