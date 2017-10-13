@@ -63,7 +63,8 @@ git checkout action-token-authenticator/pom.xml
 git checkout action-token-required-action/pom.xml 
 git rm -r action-token-authenticator
 git rm -r action-token-required-action
+git rm -r service-springboot-rest
 git status
 
 git commit . -m "rename pom and readme"
-git push --force "https://${GH_TOKEN}@${GH_REF}" prod_staging:production-test
+git push --force "https://${GH_TOKEN}@${GH_REF}" prod_staging:7.2.x-devel
